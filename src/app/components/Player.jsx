@@ -76,7 +76,7 @@ export default function Player({token, uri, children}){
         playing,setPlaying,
         setActualLink,
         paused,
-        token: token.value,
+        token: token?.value,
         setSongDuration, 
         setImgUrl,
     }
