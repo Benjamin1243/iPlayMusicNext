@@ -1,0 +1,51 @@
+@use "../variabels.scss";
+.featuredCard{
+    text-decoration: none;
+    display: grid;
+   
+    background-size: cover;
+    padding-left: 1.2rem;
+    margin: 0 auto;
+     margin-top: 2rem;
+     margin-bottom: 3rem;
+     
+    min-width: 20.3rem;
+    width: 90%;
+    max-width: 28rem;
+    height: 26.5rem;
+  
+    grid-template-columns: 1fr;
+    border-radius: 0.5rem;
+    grid-template-rows: 1fr;
+  
+&__backgroundDiv{
+    background: variabels.$filterGradient;
+grid-row: 1/-1;
+ border-radius: 0.5rem;
+grid-column: 1/-1;
+}
+&__heading{
+    text-decoration: none;
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+   
+    color: variabels.$white;
+    font-size: 2.1rem;
+    align-self: flex-end;
+    font-weight: bold;
+    padding-bottom: 5rem;
+}
+&__text{
+    align-self: flex-end;
+    font-size: 0.75rem;
+    padding-bottom: 3rem;
+    color: variabels.$white;
+    font-weight: 200;
+     grid-row: 1/-1;
+    grid-column: 1/-1;
+}
+}
+body{
+    background-color: var(--appBackgroundColor);
+    transition: var(--animationTransistion);
+}

@@ -1,0 +1,18 @@
+.topNavBar{
+   
+   z-index: -1;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    padding-top: 2rem;
+    &__heading{
+        z-index:2;
+        font-size: 0.9rem;
+        font-weight: lighter;
+         padding-bottom: 1rem;
+    }
+    &__icon{
+        z-index: 2;
+    }
+}
+
