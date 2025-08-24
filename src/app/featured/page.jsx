@@ -20,7 +20,8 @@ export default async function Featured(){
         }
        
     })
-     const data = await repsponse.json()
+    console.log("response", repsponse)
+     const data = await repsponse?.json()
      
 
     return(

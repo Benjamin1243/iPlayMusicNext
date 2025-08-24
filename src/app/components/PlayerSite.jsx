@@ -14,10 +14,13 @@ import { convertSecondToMinutes } from "../functions";
 
 
 
-export default function PlayerSite({style, id, token, setPlayOpen, duration, actualTime, playing, isPaused, playerState}){
+export default function PlayerSite({style, id, token, setPlayOpen, duration, actualTime, playing, isPaused, playerState, setActualTime}){
    
  
 const [data, setData] = useState({});
+const [holdDownTjekker, setHoldDownTjekker] = useState(false)
+const [seekValue, setSeekValue] = useState(0)
+
 
 
 
@@ -59,17 +62,39 @@ const [data, setData] = useState({});
     <h2 className="player__title">{data?.name}</h2>
     <p className="player__artist">{data?.artists?.[0]?.name}</p>
     <div className="player__playBarDiv">
-         <div className="player__playerInputButton"></div>
+         <div className="player__playerInputButton" style={{display: "none"}}></div>
         <div className="player__range">
             
-            <div className="player__rangeInput"></div>
+           <input type="range" id="playerRange" onInput={(e)=>{
+            setSeekValue(e.target.value)
+         
+            setHoldDownTjekker(true)
+             setActualTime(e.target.value)
+           }}
+           onPointerUp={(e)=>{
+          
+            playerState.seek(e.target.value)
+            
+            console.log(e.target.value)
+            setActualTime(e.target.value)
+
+            setHoldDownTjekker(false)
+           }}
+           
+           className="player__range" value={holdDownTjekker== false? actualTime: seekValue} max={duration} />
            
         </div>
         <p className="player__minText">{convertSecondToMinutes( actualTime)}</p>    
         <p className="player__minText player__minText--last">{convertSecondToMinutes(duration)}</p>
            <div className="player__playerButtonsDiv ">
-        <button className="player__button"><IoIosSkipBackward  className="player__littleIcon"/></button>
-        <button className="player__button"><FaBackward  className="player__littleIcon" /></button>
+        <button className="player__button" style={{zIndex: 100}} onClick={()=>{
+            playerState.seek( actualTime + 5)
+            alert(actualTime)
+        }}><IoIosSkipBackward  className="player__littleIcon"/></button>
+        <button onClick={()=>{
+            playerState.seek( actualTime- 5)
+           
+        }} className="player__button"><FaBackward  className="player__littleIcon" /></button>
        <button onClick={()=>{
         if(!isPaused){
         playerState.pause()}else{

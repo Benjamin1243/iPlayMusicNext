@@ -23,6 +23,7 @@ export default function Player({token, uri, children}){
     const [songDuration, setSongDuration] = useState(0)
     const [actualPlayingUri, setactualPlayingUri ] = useState("")
     const [imgUrl, setImgUrl] = useState({})
+    const [milisecondsplayed, setMilisecondsPlayed] = useState(0)
  
 
   let bar;
@@ -79,6 +80,7 @@ export default function Player({token, uri, children}){
         token: token?.value,
         setSongDuration, 
         setImgUrl,
+        milisecondsplayed,
     }
 
    let interval 
@@ -95,6 +97,7 @@ export default function Player({token, uri, children}){
       setPaused(false)
     }
     let seconds = (e.data.position/ 1000)
+    setMilisecondsPlayed(e.data.position/ 1000)
     setActualTime(seconds)
     
     const duration = e.data.duration / 1000
@@ -104,7 +107,7 @@ export default function Player({token, uri, children}){
     
 
     document.querySelector(".playerBar__line").style.width = time + "%"
-    document.querySelector(".player__rangeInput").style.width = time + "%"
+    
     document.querySelector(".player__playerInputButton").style.marginLeft = time + "%"
   
 });
@@ -134,7 +137,7 @@ function addTime(){
     return (
     <>
    
-    {playOpen? <PlayerSite  playerState={player} isPaused={paused} actualTime={actualTime} duration={songDuration} setPlayOpen={setPlayOpen} token={token.value} id={actualLink}></PlayerSite>: ""}
+    {playOpen? <PlayerSite  playerState={player} isPaused={paused} setActualTime={setActualTime} actualTime={actualTime} duration={songDuration} setPlayOpen={setPlayOpen} token={token.value} id={actualLink}></PlayerSite>: ""}
     <PlayerSite playerState={player} style={{"display":"none"}}></PlayerSite>
    
     

@@ -72,7 +72,8 @@ setPlaying(true)
 
 
     // Skift sang og afspil med lille delay for at sikre controlleren er klar
-    player?.loadUri(uri);
+    if(uri !== player?.playingUri){
+    player?.loadUri(uri);}
     
      player?.setPlayingUri(uri)
      player.resume()
@@ -97,7 +98,13 @@ setPlaying(true)
       
 
 
-    <article className="songPreview" >
+    <article className="songPreview" onClick={()=>{
+        alert("ejrj")
+        setTimeout(()=>{
+  player.play()
+        },1000)
+     
+    }} >
        
 
 {player?.paused == false && player.playingUri == uri?  <FaPause className="songPreview__icon" onClick={()=>{pauseFunc()}} />:<FaCirclePlay className="songPreview__icon" onClick={handlePlay} />}
