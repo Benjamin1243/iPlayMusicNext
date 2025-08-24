@@ -98,13 +98,7 @@ setPlaying(true)
       
 
 
-    <article className="songPreview" onClick={()=>{
-        alert("ejrj")
-        setTimeout(()=>{
-  player.play()
-        },1000)
-     
-    }} >
+    <article className="songPreview"  >
        
 
 {player?.paused == false && player.playingUri == uri?  <FaPause className="songPreview__icon" onClick={()=>{pauseFunc()}} />:<FaCirclePlay className="songPreview__icon" onClick={handlePlay} />}
